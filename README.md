@@ -21,3 +21,8 @@
 </li>
   <p>返回的是<code>HTML</code>就用<code>BeautifulSoup</code>中<code>select</code>方法来选取元素处理.</br>
   返回的是<code>json</code>就通过<code>python</code>自带的<code>json</code>库来处理变成<code>dict</code>然后提取出所需要的信息.
+
+<li>
+  <h3><code>re</code>正则表达式</h3>
+</li>
+<p><a href = "http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">点击此处学习正则表达式</a></p>
