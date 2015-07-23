@@ -25,4 +25,4 @@
 <li>
   <h3><code>re</code>正则表达式</h3>
 </li>
-<p><a href = "http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">点击此处学习正则表达式</a></p>
+<p><a href = "http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target = blank>点击此处学习正则表达式</a></p>
