@@ -1,87 +1,161 @@
-#-*- coding: utf-8 -*-
+#  Copyright 2008-2015 Nokia Solutions and Networks
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
 
-from email import encoders
-from email.header import Header
-from email.mime.text import MIMEText
-from email.utils import parseaddr, formataddr
-import smtplib
-import xml.etree.ElementTree as ET
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+from robot.errors import DataError
+from robot.utils import XmlWriter, NullMarkupWriter, get_timestamp, unic
+from robot.version import get_full_version
+from robot.result.visitor import ResultVisitor
 
-class SendResultEmail(object):
-    def __init__(self, xml_dir):
-        self.xml_dir = xml_dir
-        self.__load_output_xml()
+from .loggerhelper import IsLogged
 
-    def __percentage(self, succ, fail):
+
+class XmlLogger(ResultVisitor):
+
+    def __init__(self, path, log_level='TRACE', generator='Robot'):
+        self._log_message_is_logged = IsLogged(log_level)
+        self._error_message_is_logged = IsLogged('WARN')
+        self._writer = self._get_writer(path, generator)
+        self._errors = []
+
+    def _get_writer(self, path, generator):
+        if not path:
+            return NullMarkupWriter()
         try:
-            numerator = float(succ)
-            denominator = float(succ) + float(fail)
-        except Exception as e:
-            raise Exception(e)
-        return '%.2f%%' % (numerator*100 / denominator)
+            writer = XmlWriter(path, encoding='UTF-8', write_empty=False)
+        except EnvironmentError as err:
+            raise DataError("Opening output file '%s' failed: %s" %
+                            (path, err.strerror))
+        writer.start('robot', {'generator': get_full_version(generator),
+                               'generated': get_timestamp()})
+        return writer
 
-    # load the output.xml
-    def __load_output_xml(self):
-        root = ET.parse(self.xml_dir).getroot()
-        total_list = root.findall('./statistics/total/stat')
-        tag_list = root.findall('./statistics/tag/stat')
-        suite_list = root.findall('./statistics/suite/stat')
-        re = ''
-        for tag in suite_list:
-            re += 'pass: %s, fail: %s, percentage: %s. Testsuite: %s \n'.decode('gbk').encode('utf-8') % (tag.attrib['pass'], tag.attrib['fail'], self.__percentage(tag.attrib['pass'], tag.attrib['fail']), tag.text)
-        print re
-        with open('C:\\Users\\10192928\\Desktop\\a.txt', 'w') as fo:
-            fo.write(re)
-        return total_list, tag_list, suite_list
+    def close(self):
+        self.start_errors()
+        for msg in self._errors:
+            self._write_message(msg)
+        self.end_errors()
+        self._writer.end('robot')
+        self._writer.close()
 
-    def __read_output_content(self):
-        total_list, tag_list, suite_list = self.__load_output_xml()
-        re = ''
-        for tag in suite_list:
-            re += 'pass: %s, fail: %s, percentage: %s. Testsuite: %s\n'.decode('gbk').encode('utf-8') % (tag.attrib['pass'], tag.attrib['fail'], self.__percentage(tag.attrib['pass'], tag.attrib['fail']), tag.text)
-        return re
+    def set_log_level(self, level):
+        return self._log_message_is_logged.set_level(level)
 
-    def __read_output_subject(self):
-        total_list, tag_list, suite_list = self.__load_output_xml()
-        re = ''
-        for tag in total_list:
-            re += 'pass: %s, fail: %s, percentage: %s. Testsuite: %s '.decode('gbk').encode('utf-8') % (tag.attrib['pass'], tag.attrib['fail'], self.__percentage(tag.attrib['pass'], tag.attrib['fail']), tag.text)
-        return re
+    def message(self, msg):
+        if self._error_message_is_logged(msg.level):
+            self._errors.append(msg)
 
-    def __format_addr(s):
-        name, addr = parseaddr(s)
-        return formataddr((Header(name, 'utf-8').encode(), addr))
+    def log_message(self, msg):
+        if self._log_message_is_logged(msg.level):
+            self._write_message(msg)
 
-    def send_result(self):
-        smtp_server = 'smtp.zte.com.cn'
-        port = 25
-        from_addr = 'lu.xiaobo@zte.com.cn'
-        to_addr = ['lu.xiaobo@zte.com.cn',] # better to read from external file
+    def _write_message(self, msg):
+        attrs = {'timestamp': msg.timestamp or 'N/A', 'level': msg.level}
+        if msg.html:
+            attrs['html'] = 'yes'
+        self._writer.element('msg', msg.message, attrs)
 
-        email_content = self.__read_output_content()
-        email_header = self.__read_output_subject()
+    def start_keyword(self, kw):
+        attrs = {'name': kw.kwname, 'library': kw.libname}
+        if kw.type != 'kw':
+            attrs['type'] = kw.type
+        if kw.timeout:
+            attrs['timeout'] = unicode(kw.timeout)
+        self._writer.start('kw', attrs)
+        self._write_list('tags', 'tag', [unic(t) for t in kw.tags])
+        self._writer.element('doc', kw.doc)
+        self._write_list('arguments', 'arg', [unic(a) for a in kw.args])
+        self._write_list('assign', 'var', kw.assign)
 
-        msg = MIMEText(email_content, 'plain', 'utf-8')
-        msg['From'] = 'lu.xiaobo@zte.com.cn'
-        msg['To'] = 'lu.xiaobo@zte.com.cn'
-        msg['Subject'] = Header(email_header, 'utf-8').encode()
+    def end_keyword(self, kw):
+        self._write_status(kw)
+        self._writer.end('kw')
 
-        try:
-            smtp = smtplib.SMTP(smtp_server, port)
-            smtp.set_debuglevel(1)
-            smtp.login(from_addr, password)
-            smtp.sendmail(from_addr, to_addr, msg.as_string())
-            smtp.quit()
-            return True
-        except Exception as e:
-            raise Exception(e)
-            return False
+    def start_test(self, test):
+        attrs = {'id': test.id, 'name': test.name}
+        if test.timeout:
+            attrs['timeout'] = unicode(test.timeout)
+        self._writer.start('test', attrs)
 
+    def end_test(self, test):
+        self._writer.element('doc', test.doc)
+        self._write_list('tags', 'tag', test.tags)
+        self._write_status(test, {'critical': 'yes' if test.critical else 'no'})
+        self._writer.end('test')
 
-if __name__ == '__main__':
-    sre = SendResultEmail('C:\\Users\\10192928\\AppData\\Local\\Temp\\RIDEpbk1m9.d\\output.xml')
-    #sre.load_output_xml()
-    sre.send_result()
+    def start_suite(self, suite):
+        attrs = {'id': suite.id, 'name': suite.name, 'source': suite.source}
+        self._writer.start('suite', attrs)
+
+    def end_suite(self, suite):
+        self._writer.element('doc', suite.doc)
+        if suite.metadata:
+            self._write_metadata(suite.metadata)
+        self._write_status(suite)
+        self._writer.end('suite')
+
+    def _write_metadata(self, metadata):
+        self._writer.start('metadata')
+        for name, value in metadata.items():
+            self._writer.element('item', value, {'name': name})
+        self._writer.end('metadata')
+
+    def start_statistics(self, stats):
+        self._writer.start('statistics')
+
+    def end_statistics(self, stats):
+        self._writer.end('statistics')
+
+    def start_total_statistics(self, total_stats):
+        self._writer.start('total')
+
+    def end_total_statistics(self, total_stats):
+        self._writer.end('total')
+
+    def start_tag_statistics(self, tag_stats):
+        self._writer.start('tag')
+
+    def end_tag_statistics(self, tag_stats):
+        self._writer.end('tag')
+
+    def start_suite_statistics(self, tag_stats):
+        self._writer.start('suite')
+
+    def end_suite_statistics(self, tag_stats):
+        self._writer.end('suite')
+
+    def visit_stat(self, stat):
+        self._writer.element('stat', stat.name,
+                             stat.get_attributes(values_as_strings=True))
+
+    def start_errors(self, errors=None):
+        self._writer.start('errors')
+
+    def end_errors(self, errors=None):
+        self._writer.end('errors')
+
+    def _write_list(self, container_tag, item_tag, items):
+        if items:
+            self._writer.start(container_tag)
+            for item in items:
+                self._writer.element(item_tag, item)
+            self._writer.end(container_tag)
+
+    def _write_status(self, item, extra_attrs=None):
+        attrs = {'status': item.status, 'starttime': item.starttime or 'N/A',
+                 'endtime': item.endtime or 'N/A'}
+        if not (item.starttime and item.endtime):
+            attrs['elapsedtime'] = str(item.elapsedtime)
+        if extra_attrs:
+            attrs.update(extra_attrs)
+        self._writer.element('status', item.message, attrs)
