@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20151221 10:04:02.349" generator="Robot 2.8.5 (Python 2.7.10 on win32)">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest" id="s1" name="OMCAutoTest">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest\testcase" id="s1-s1" name="Testcase">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest\testcase\配置" id="s1-s1-s1" name="配置">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest\testcase\配置\GU配置" id="s1-s1-s1-s1" name="GU配置">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest\testcase\配置\GU配置\扁平化配置" id="s1-s1-s1-s1-s1" name="扁平化配置">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest\testcase\配置\GU配置\扁平化配置\规划模板" id="s1-s1-s1-s1-s1-s1" name="规划模板">
+<suite source="D:\workspace\dev\gu\gu\tools\OMCAutoTest\testcase\配置\GU配置\扁平化配置\规划模板\02-扁平化规划导入导出.txt" id="s1-s1-s1-s1-s1-s1-s1" name="02-扁平化规划导入导出">
+<test id="s1-s1-s1-s1-s1-s1-s1-t1" name="创建规划区">
+<kw type="setup" name="variables_and_keywords_for_flatems.登录客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Login Ems Client Socket">
+<doc></doc>
+<arguments>
+<arg>${global_flatemsclientip}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:06.927" level="INFO">('ip', u'10.9.177.65', 'port', 20000)</msg>
+<status status="PASS" endtime="20151221 10:04:06.928" starttime="20151221 10:04:06.853"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:06.928" starttime="20151221 10:04:06.851"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20151221 10:04:11.944" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20151221 10:04:11.946" starttime="20151221 10:04:06.929"></status>
+</kw>
+<kw type="kw" name="variables_and_keywords_for_flatems.创建规划区">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="FlatTdsService.Create PlanArea">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20151221 10:04:17.671" level="INFO">RT INVOKE:CLASS="com.zte.ums.mucf.osf.planarea.TestInvoker",METHOD="create",ARGUMENT="[{\"moi\":null,\"lastModifedTime\":null,\"status\":0,\"subNetworkCount\":0,\"planId\":0,\"userLabel\":\"auto test\",\"planType\":1,\"createUser\":\"admin\",\"neCount\":0,\"session\":0,\"usedType\":0,\"usedUser\":null,\"C_N_JSON\":\"com.zte.ums.mucf.common.dataarea.PlanAreaInfo\",\"usedIp\":null,\"note\":\"auto test\"},[\"SubNetwork=-1000,ManagedElement=1\"]]",svrrun=false;
+Ack RT INVOKE:RESULT="190",ERRMSG=SUCCESS, ERRCODE=0;
+
+1************* 190</msg>
+<status status="PASS" endtime="20151221 10:04:17.672" starttime="20151221 10:04:11.953"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:17.672" starttime="20151221 10:04:11.949"></status>
+</kw>
+<kw type="teardown" name="variables_and_keywords_for_flatems.退出扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Logout Ems Client Socket">
+<doc></doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20151221 10:04:17.676" starttime="20151221 10:04:17.676"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:17.677" starttime="20151221 10:04:17.673"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>eagle</tag>
+</tags>
+<status status="PASS" endtime="20151221 10:04:17.678" critical="yes" starttime="20151221 10:04:06.844"></status>
+</test>
+<test id="s1-s1-s1-s1-s1-s1-s1-t2" name="打开规划区">
+<kw type="setup" name="variables_and_keywords_for_flatems.登录客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Login Ems Client Socket">
+<doc></doc>
+<arguments>
+<arg>${global_flatemsclientip}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:17.700" level="INFO">('ip', u'10.9.177.65', 'port', 20000)</msg>
+<status status="PASS" endtime="20151221 10:04:17.700" starttime="20151221 10:04:17.686"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:17.701" starttime="20151221 10:04:17.683"></status>
+</kw>
+<kw type="kw" name="variables_and_keywords_for_flatems.打开规划区">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="FlatTdsService.Open PlanArea">
+<doc></doc>
+<arguments>
+<arg>${global_flatplanid}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:20.665" level="INFO">RT INVOKE:CLASS="com.zte.ums.mucf.osf.planarea.TestInvoker",METHOD="close",ARGUMENT="[189]",svrrun=false;
+Ack RT INVOKE:RESULT="null",ERRMSG=SUCCESS, ERRCODE=0;
+
+RT INVOKE:CLASS="com.zte.ums.mucf.osf.planarea.TestInvoker",METHOD="open",ARGUMENT="[100]",svrrun=false;
+Ack RT INVOKE:ERRMSG=\xce\xde\xb7\xa8\xb4\xf2\xbf\xaa\xb9\xe6\xbb\xae\xc7\xf8100\xa1\xa3, ERRCODE=956301313, EXCEPTION=\xce\xde\xb7\xa8\xb4\xf2\xbf\xaa\xb9\xe6\xbb\xae\xc7\xf8100\xa1\xa3;</msg>
+<msg timestamp="20151221 10:04:20.687" level="FAIL">Ack RT INVOKE:ERRMSG=\xce\xde\xb7\xa8\xb4\xf2\xbf\xaa\xb9\xe6\xbb\xae\xc7\xf8100\xa1\xa3, ERRCODE=956301313, EXCEPTION=\xce\xde\xb7\xa8\xb4\xf2\xbf\xaa\xb9\xe6\xbb\xae\xc7\xf8100\xa1\xa3;
+</msg>
+<status status="FAIL" endtime="20151221 10:04:20.687" starttime="20151221 10:04:17.704"></status>
+</kw>
+<status status="FAIL" endtime="20151221 10:04:20.688" starttime="20151221 10:04:17.702"></status>
+</kw>
+<kw type="teardown" name="variables_and_keywords_for_flatems.退出扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Logout Ems Client Socket">
+<doc></doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20151221 10:04:20.690" starttime="20151221 10:04:20.689"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:20.690" starttime="20151221 10:04:20.688"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>eagle</tag>
+</tags>
+<status status="FAIL" endtime="20151221 10:04:20.692" critical="yes" starttime="20151221 10:04:17.679">Ack RT INVOKE:ERRMSG=\xce\xde\xb7\xa8\xb4\xf2\xbf\xaa\xb9\xe6\xbb\xae\xc7\xf8100\xa1\xa3, ERRCODE=956301313, EXCEPTION=\xce\xde\xb7\xa8\xb4\xf2\xbf\xaa\xb9\xe6\xbb\xae\xc7\xf8100\xa1\xa3;
+</status>
+</test>
+<test id="s1-s1-s1-s1-s1-s1-s1-t3" name="导入平台CSV数据">
+<kw type="kw" name="${clientSocket} = variables_and_keywords_for_flatems.登录扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${clientsocket} = EmsService.Flat Login Ems Client Socket">
+<doc></doc>
+<arguments>
+<arg>${global_flatemsclientip}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:21.235" level="INFO">('ip', u'10.9.177.65', 'port', 20000)</msg>
+<msg timestamp="20151221 10:04:21.235" level="INFO">${clientsocket} = &lt;domain.flattds.GUI_Test.GuiTesterClient instance at 0x025E5828&gt;</msg>
+<status status="PASS" endtime="20151221 10:04:21.235" starttime="20151221 10:04:21.233"></status>
+</kw>
+<msg timestamp="20151221 10:04:21.236" level="INFO">${clientSocket} = &lt;domain.flattds.GUI_Test.GuiTesterClient instance at 0x025E5828&gt;</msg>
+<status status="PASS" endtime="20151221 10:04:21.236" starttime="20151221 10:04:21.088"></status>
+</kw>
+<kw type="kw" name="${resultValue} = variables_and_keywords_for_flatems.导入规划区CSV数据">
+<doc></doc>
+<arguments>
+<arg>${clientSocket}</arg>
+<arg>CSV_AUTOTEST.zip</arg>
+</arguments>
+<kw type="kw" name="${importResult} = FlatTdsService.Flat Import Plan Csv">
+<doc></doc>
+<arguments>
+<arg>${clientSocket}</arg>
+<arg>${global_flatplanid}</arg>
+<arg>${filename}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:33.737" level="INFO">RT INVOKE:CLASS="com.zte.ums.mucf.osf.planarea.TestInvoker",METHOD="create",ARGUMENT="[{\"moi\":null,\"lastModifedTime\":null,\"status\":0,\"subNetworkCount\":0,\"planId\":0,\"userLabel\":\"auto test\",\"planType\":1,\"createUser\":\"admin\",\"neCount\":0,\"session\":0,\"usedType\":0,\"usedUser\":null,\"C_N_JSON\":\"com.zte.ums.mucf.common.dataarea.PlanAreaInfo\",\"usedIp\":null,\"note\":\"auto test\"},[\"SubNetwork=-1000,ManagedElement=1\"]]",svrrun=false;
+Ack RT INVOKE:RESULT="191",ERRMSG=SUCCESS, ERRCODE=0;
+
+1************* 191
+RT INVOKE:CLASS="com.zte.ums.mucf.osf.planarea.TestInvoker",METHOD="open",ARGUMENT="[191]",svrrun=false;
+Ack RT INVOKE:RESULT="null",ERRMSG=SUCCESS, ERRCODE=0;
+
+2********* 191
+IMP DATA:DATAAREA=191,FILENAME=CSV_AUTOTEST.zip,TEMPLATENAME=CSV;
+Ack SHOW TASK:TASK="\"24\"-\"CSV_AUTOTEST.zip\"-\"\xd6\xb4\xd0\xd0\xd6\xd0[1]\"-\"2%\"-\"\"-\"\"-\"0(Start time:10:26:20, Last update time:10:26:20)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+Ack SHOW TASK:TASK="\"24\"-\"CSV_AUTOTEST.zip\"-\"\xb3\xc9\xb9\xa6[100]\"-\"100%\"-\"SubNetwork=1,ManagedElement=1\"-\"succeed\"-\"0(Start time:10:26:20, Last update time:10:26:21)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+['100', '"SubNetwork=1,ManagedElement=1"', '"succeed"']
+('status0:', '100')
+('result:', True)
+('domain.flattds.ImportPlanData', 'Imp CSV', '2015-12-21 10:04:33', ', spent time(s):', 5.4679999351501465)</msg>
+<msg timestamp="20151221 10:04:33.737" level="INFO">${importResult} = True</msg>
+<status status="PASS" endtime="20151221 10:04:33.737" starttime="20151221 10:04:21.244"></status>
+</kw>
+<msg timestamp="20151221 10:04:33.738" level="INFO">${resultValue} = True</msg>
+<status status="PASS" endtime="20151221 10:04:33.738" starttime="20151221 10:04:21.241"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be True">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${resultValue}</arg>
+</arguments>
+<status status="PASS" endtime="20151221 10:04:33.740" starttime="20151221 10:04:33.739"></status>
+</kw>
+<kw type="teardown" name="variables_and_keywords_for_flatems.退出扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Logout Ems Client Socket">
+<doc></doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20151221 10:04:33.742" starttime="20151221 10:04:33.742"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:33.742" starttime="20151221 10:04:33.740"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>eagle</tag>
+</tags>
+<status status="PASS" endtime="20151221 10:04:33.743" critical="yes" starttime="20151221 10:04:20.737"></status>
+</test>
+<test id="s1-s1-s1-s1-s1-s1-s1-t4" name="导入无线新增数据">
+<kw type="kw" name="${clientSocket} = variables_and_keywords_for_flatems.登录扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${clientsocket} = EmsService.Flat Login Ems Client Socket">
+<doc></doc>
+<arguments>
+<arg>${global_flatemsclientip}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:33.757" level="INFO">('ip', u'10.9.177.65', 'port', 20000)</msg>
+<msg timestamp="20151221 10:04:33.757" level="INFO">${clientsocket} = &lt;domain.flattds.GUI_Test.GuiTesterClient instance at 0x025E5030&gt;</msg>
+<status status="PASS" endtime="20151221 10:04:33.757" starttime="20151221 10:04:33.750"></status>
+</kw>
+<msg timestamp="20151221 10:04:33.758" level="INFO">${clientSocket} = &lt;domain.flattds.GUI_Test.GuiTesterClient instance at 0x025E5030&gt;</msg>
+<status status="PASS" endtime="20151221 10:04:33.758" starttime="20151221 10:04:33.748"></status>
+</kw>
+<kw type="kw" name="${resultValue} = variables_and_keywords_for_flatems.导入规划区GU数据">
+<doc></doc>
+<arguments>
+<arg>${clientSocket}</arg>
+<arg>PLAN_UMTS_RAW_A.xlsm</arg>
+</arguments>
+<kw type="kw" name="${importResult} = FlatTdsService.Flat Import Plan Gu Data">
+<doc></doc>
+<arguments>
+<arg>${clientSocket}</arg>
+<arg>${global_flatplanid}</arg>
+<arg>${filename}</arg>
+<arg>${global_autotestpath}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:51.175" level="INFO">Path is D:/workspace/dev/gu/gu/tools/OMCAutoTest
+D:/workspace/dev/gu/gu/tools/OMCAutoTest/domain/flattds/mml/zte/GUAUTOTEST.txt
+D:/workspace/dev/gu/gu/tools/OMCAutoTest/domain/flattds/result/RESULT_GUAUTOTEST.txt
+Ack RT INVOKE:RESULT="191",ERRMSG=SUCCESS, ERRCODE=0;
+
+191
+IMP DATA:DATAAREA="191",FILENAME=PLAN_UMTS_RAW_A.xlsm,TEMPLATENAME=Planning Data-UMTS;
+Ack SHOW TASK:TASK="\"32\"-\"PLAN_UMTS_RAW_A.xlsm\"-\"\xd6\xb4\xd0\xd0\xd6\xd0[1]\"-\"1%\"-\"\xb6\xc1\xc8\xa1\xca\xfd\xbe\xdd... \"-\"\xb6\xc1\xc8\xa1\xca\xfd\xbe\xdd... \"-\"0(Start time:10:26:27, Last update time:10:26:27)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+Ack SHOW TASK:TASK="\"32\"-\"PLAN_UMTS_RAW_A.xlsm\"-\"\xd6\xb4\xd0\xd0\xd6\xd0[1]\"-\"1%\"-\"\xb6\xc1\xc8\xa1\xca\xfd\xbe\xdd... \"-\"\xb6\xc1\xc8\xa1\xca\xfd\xbe\xdd... \"-\"0(Start time:10:26:27, Last update time:10:26:27)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+Ack SHOW TASK:TASK="\"32\"-\"PLAN_UMTS_RAW_A.xlsm\"-\"\xd6\xb4\xd0\xd0\xd6\xd0[1]\"-\"96%\"-\"\"-\"\"-\"7(Start time:10:26:27, Last update time:10:26:34)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+Ack SHOW TASK:TASK="\"32\"-\"PLAN_UMTS_RAW_A.xlsm\"-\"\xca\xa7\xb0\xdc[101]\"-\"100%\"-\"\xb5\xbc\xc8\xeb\xca\xfd\xbe\xdd\xd3\xd0\xce\xf3\xa1\xa3\"-\"E:\\\\netnumen\\\\ems_B49\\\\ums-client\\\\rundata\\\\cmdata\\\\cmimport\\\\Result_20151221_102634_484_PLAN_UMTS_RAW_A.xlsm\"-\"12(Start time:10:26:27, Last update time:10:26:39)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+['101', '"\xb5\xbc\xc8\xeb\xca\xfd\xbe\xdd\xd3\xd0\xce\xf3\xa1\xa3"', '"E:\\netnumen\\ems_B49\\ums-client\\rundata\\cmdata\\cmimport\\Result_20151221_102634_484_PLAN_UMTS_RAW_A.xlsm"']
+('status0:', '101')
+('result:', False)
+('domain.flattds.ImportPlanData', 'Imp Planning Data-UMTS', '2015-12-21 10:04:51', ', spent time(s):', 17.27900004386902)</msg>
+<msg timestamp="20151221 10:04:51.175" level="INFO">${importResult} = False</msg>
+<status status="PASS" endtime="20151221 10:04:51.175" starttime="20151221 10:04:33.761"></status>
+</kw>
+<msg timestamp="20151221 10:04:51.176" level="INFO">${resultValue} = False</msg>
+<status status="PASS" endtime="20151221 10:04:51.176" starttime="20151221 10:04:33.759"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be True">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${resultValue}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:51.339" level="FAIL">'False' should be true</msg>
+<status status="FAIL" endtime="20151221 10:04:51.339" starttime="20151221 10:04:51.177"></status>
+</kw>
+<kw type="teardown" name="variables_and_keywords_for_flatems.退出扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Logout Ems Client Socket">
+<doc></doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20151221 10:04:51.342" starttime="20151221 10:04:51.341"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:04:51.342" starttime="20151221 10:04:51.340"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>eagle</tag>
+</tags>
+<status status="FAIL" endtime="20151221 10:04:51.343" critical="yes" starttime="20151221 10:04:33.744">'False' should be true</status>
+</test>
+<test id="s1-s1-s1-s1-s1-s1-s1-t5" name="导入无线修改数据">
+<kw type="kw" name="${clientSocket} = variables_and_keywords_for_flatems.登录扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="${clientsocket} = EmsService.Flat Login Ems Client Socket">
+<doc></doc>
+<arguments>
+<arg>${global_flatemsclientip}</arg>
+</arguments>
+<msg timestamp="20151221 10:04:51.351" level="INFO">('ip', u'10.9.177.65', 'port', 20000)</msg>
+<msg timestamp="20151221 10:04:51.352" level="INFO">${clientsocket} = &lt;domain.flattds.GUI_Test.GuiTesterClient instance at 0x025F9148&gt;</msg>
+<status status="PASS" endtime="20151221 10:04:51.351" starttime="20151221 10:04:51.349"></status>
+</kw>
+<msg timestamp="20151221 10:04:51.353" level="INFO">${clientSocket} = &lt;domain.flattds.GUI_Test.GuiTesterClient instance at 0x025F9148&gt;</msg>
+<status status="PASS" endtime="20151221 10:04:51.353" starttime="20151221 10:04:51.348"></status>
+</kw>
+<kw type="kw" name="${resultValue} = variables_and_keywords_for_flatems.导入规划区GU数据">
+<doc></doc>
+<arguments>
+<arg>${clientSocket}</arg>
+<arg>PLAN_UMTS_RAW_M.xlsm</arg>
+</arguments>
+<kw type="kw" name="${importResult} = FlatTdsService.Flat Import Plan Gu Data">
+<doc></doc>
+<arguments>
+<arg>${clientSocket}</arg>
+<arg>${global_flatplanid}</arg>
+<arg>${filename}</arg>
+<arg>${global_autotestpath}</arg>
+</arguments>
+<msg timestamp="20151221 10:05:02.756" level="INFO">Path is D:/workspace/dev/gu/gu/tools/OMCAutoTest
+D:/workspace/dev/gu/gu/tools/OMCAutoTest/domain/flattds/mml/zte/GUAUTOTEST.txt
+D:/workspace/dev/gu/gu/tools/OMCAutoTest/domain/flattds/result/RESULT_GUAUTOTEST.txt
+Ack RT INVOKE:RESULT="191",ERRMSG=SUCCESS, ERRCODE=0;
+
+191
+IMP DATA:DATAAREA="191",FILENAME=PLAN_UMTS_RAW_M.xlsm,TEMPLATENAME=Planning Data-UMTS;
+Ack SHOW TASK:TASK="\"47\"-\"PLAN_UMTS_RAW_M.xlsm\"-\"\xd6\xb4\xd0\xd0\xd6\xd0[1]\"-\"1%\"-\"\xb6\xc1\xc8\xa1\xca\xfd\xbe\xdd... \"-\"\xb6\xc1\xc8\xa1\xca\xfd\xbe\xdd... \"-\"0(Start time:10:26:44, Last update time:10:26:44)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+Ack SHOW TASK:TASK="\"47\"-\"PLAN_UMTS_RAW_M.xlsm\"-\"\xd6\xb4\xd0\xd0\xd6\xd0[1]\"-\"96%\"-\"\"-\"\"-\"5(Start time:10:26:44, Last update time:10:26:49)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+Ack SHOW TASK:TASK="\"47\"-\"PLAN_UMTS_RAW_M.xlsm\"-\"\xca\xa7\xb0\xdc[101]\"-\"100%\"-\"\xb5\xbc\xc8\xeb\xca\xfd\xbe\xdd\xd3\xd0\xce\xf3\xa1\xa3\"-\"E:\\\\netnumen\\\\ems_B49\\\\ums-client\\\\rundata\\\\cmdata\\\\cmimport\\\\Result_20151221_102649_750_PLAN_UMTS_RAW_M.xlsm\"-\"10(Start time:10:26:44, Last update time:10:26:54)\"",ERRMSG=SUCCESS, ERRCODE=0;
+
+['101', '"\xb5\xbc\xc8\xeb\xca\xfd\xbe\xdd\xd3\xd0\xce\xf3\xa1\xa3"', '"E:\\netnumen\\ems_B49\\ums-client\\rundata\\cmdata\\cmimport\\Result_20151221_102649_750_PLAN_UMTS_RAW_M.xlsm"']
+('status0:', '101')
+('result:', False)
+('domain.flattds.ImportPlanData', 'Imp Planning Data-UMTS', '2015-12-21 10:05:02', ', spent time(s):', 11.283000230789185)</msg>
+<msg timestamp="20151221 10:05:02.758" level="INFO">${importResult} = False</msg>
+<status status="PASS" endtime="20151221 10:05:02.757" starttime="20151221 10:04:51.357"></status>
+</kw>
+<msg timestamp="20151221 10:05:02.759" level="INFO">${resultValue} = False</msg>
+<status status="PASS" endtime="20151221 10:05:02.758" starttime="20151221 10:04:51.354"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be True">
+<doc>Fails if the given condition is not true.</doc>
+<arguments>
+<arg>${resultValue}</arg>
+</arguments>
+<msg timestamp="20151221 10:05:02.761" level="FAIL">'False' should be true</msg>
+<status status="FAIL" endtime="20151221 10:05:02.761" starttime="20151221 10:05:02.759"></status>
+</kw>
+<kw type="teardown" name="variables_and_keywords_for_flatems.退出扁平化EMS客户端">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="EmsService.Flat Logout Ems Client Socket">
+<doc></doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20151221 10:05:02.764" starttime="20151221 10:05:02.764"></status>
+</kw>
+<status status="PASS" endtime="20151221 10:05:02.765" starttime="20151221 10:05:02.762"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>eagle</tag>
+</tags>
+<status status="FAIL" endtime="20151221 10:05:02.765" critical="yes" starttime="20151221 10:04:51.345">'False' should be true</status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.767" starttime="20151221 10:04:03.500"></status>
+</suite>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.775" starttime="20151221 10:04:03.492"></status>
+</suite>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.781" starttime="20151221 10:04:03.485"></status>
+</suite>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.819" starttime="20151221 10:04:03.479"></status>
+</suite>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.829" starttime="20151221 10:04:03.474"></status>
+</suite>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.855" starttime="20151221 10:04:03.469"></status>
+</suite>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20151221 10:05:02.861" starttime="20151221 10:04:03.286"></status>
+</suite>
+
+
+
+<statistics>
+	<total>
+		<stat fail="3" pass="2">Critical Tests</stat>
+		<stat fail="3" pass="2">All Tests</stat>
+	</total>
+	
+	<tag>
+		<stat info="" links="" doc="" combined="" pass="2" fail="3">eagle</stat>
+	</tag>
+	
+	<suite>
+		<stat fail="3" pass="2" id="s1" name="OMCAutoTest">OMCAutoTest</stat>
+		<stat fail="3" pass="2" id="s1-s1" name="Testcase">OMCAutoTest.Testcase</stat>
+		<stat fail="3" pass="2" id="s1-s1-s1" name="配置">OMCAutoTest.Testcase.配置</stat>
+		<stat fail="3" pass="2" id="s1-s1-s1-s1" name="GU配置">OMCAutoTest.Testcase.配置.GU配置</stat>
+		<stat fail="3" pass="2" id="s1-s1-s1-s1-s1" name="扁平化配置">OMCAutoTest.Testcase.配置.GU配置.扁平化配置</stat>
+		<stat fail="3" pass="2" id="s1-s1-s1-s1-s1-s1" name="规划模板">OMCAutoTest.Testcase.配置.GU配置.扁平化配置.规划模板</stat>
+		<stat fail="3" pass="2" id="s1-s1-s1-s1-s1-s1-s1" name="02-扁平化规划导入导出">OMCAutoTest.Testcase.配置.GU配置.扁平化配置.规划模板.02-扁平化规划导入导出</stat>
+	</suite>
+	
+</statistics>
+
+<errors>
+</errors>
+</robot>
